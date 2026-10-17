@@ -170,14 +170,13 @@
   document.querySelectorAll('video[data-autoplay]').forEach(v => vio.observe(v));
 
   const film = document.querySelector('.film');
-  const filmVideo = film.querySelector('video');
-  // Skip the porch shot at the start of the film for the silent background loop
-  filmVideo.addEventListener('loadedmetadata', () => { if (!film.classList.contains('playing')) filmVideo.currentTime = 8; }, { once: true });
+  const VIMEO_ID = '1236713894';
   document.getElementById('playFilm').addEventListener('click', () => {
+    film.querySelector('video').pause();
+    document.getElementById('filmPlayer').innerHTML =
+      `<iframe src="https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" ` +
+      `allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Poço — the arrival"></iframe>`;
     film.classList.add('playing');
-    filmVideo.currentTime = 0;
-    filmVideo.controls = true;
-    filmVideo.play();
   });
 
   /* ---------------- Contact form ---------------- */
