@@ -156,7 +156,6 @@ a { color: inherit; text-decoration: none; }
 .concept__svg rect.draw, .concept__svg ellipse.draw { stroke-width: 2; stroke-dasharray: 6 5; }
 .concept__h { font: 400 4.6px var(--serif); fill: #fff; }
 .concept__tag { position: absolute; top: 14px; left: 14px; font: 500 10px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: #fff; background: rgba(29,43,36,.65); padding: 8px 10px; }
-.concept--wide { grid-column: 1 / -1; }
 .concept figcaption { padding-top: 28px; }
 .concept figcaption .display { margin-bottom: 12px; }
 .concept figcaption p { color: var(--muted); max-width: 480px; }
