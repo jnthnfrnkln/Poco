@@ -3,14 +3,298 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Poco</title>
-  <style>
-    html, body { height: 100%; margin: 0; }
-    body { display: grid; place-items: center; font-family: system-ui, sans-serif; background: #fff; color: #111; }
-    @media (prefers-color-scheme: dark) { body { background: #111; color: #eee; } }
-  </style>
+  <title>Poço · Ilhabela</title>
+  <meta name="description" content="Fazenda Ambiental do Poço — 100 hectares of private land on Ilhabela, reachable only by sea, surrounded by Ilhabela State Park.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello world</h1>
+
+<header class="nav" id="nav">
+  <a href="#top" class="nav__brand">Poço<span>Ilhabela</span></a>
+  <nav class="nav__links">
+    <a href="#land" data-i18n="nav.land">The land</a>
+    <a href="#today" data-i18n="nav.today">Today</a>
+    <a href="#future" data-i18n="nav.future">Tomorrow</a>
+    <a href="#events" data-i18n="nav.events">Events</a>
+    <a href="#contact" class="nav__cta" data-i18n="nav.contact">Private inquiry</a>
+  </nav>
+  <button class="lang" id="lang" aria-label="Switch language">PT</button>
+</header>
+
+<!-- ============ 1. EARTH ZOOM ============ -->
+<section class="fly" id="top">
+  <div class="fly__sticky">
+    <div id="map" class="fly__map" aria-hidden="true"></div>
+    <video class="fly__video" id="flyVideo" src="assets/video/poco-loop.mp4" poster="assets/img/v-vale-montanhas.jpg" muted loop playsinline preload="auto"></video>
+    <div class="fly__shade"></div>
+
+    <div class="fly__captions">
+      <div class="cap" data-at="0">
+        <p class="eyebrow" data-i18n="fly.0.eyebrow">Fazenda Ambiental do Poço</p>
+        <h1 class="display" data-i18n="fly.0.title">Some places can still<br>only be reached by sea.</h1>
+        <p class="scrollhint" data-i18n="fly.0.hint">Scroll to arrive</p>
+      </div>
+      <div class="cap" data-at="1">
+        <p class="eyebrow">23° 45′ S · 45° 15′ W</p>
+        <h2 class="display" data-i18n="fly.1.title">The coast of São Paulo, Brazil.</h2>
+      </div>
+      <div class="cap" data-at="2">
+        <p class="eyebrow">Ilhabela</p>
+        <h2 class="display" data-i18n="fly.2.title">An island where most of the land<br>is protected forest — forever.</h2>
+      </div>
+      <div class="cap" data-at="3">
+        <p class="eyebrow">Praia do Poço</p>
+        <h2 class="display" data-i18n="fly.3.title">No road reaches this side<br>of the island.</h2>
+      </div>
+      <div class="cap" data-at="4">
+        <p class="eyebrow" data-i18n="fly.4.eyebrow">100 hectares · private</p>
+        <h2 class="display" data-i18n="fly.4.title">This is Poço.</h2>
+      </div>
+    </div>
+
+    <div class="fly__progress"><span id="flyBar"></span></div>
+    <button class="fly__skip" id="skip" data-i18n="fly.skip">Skip intro ↓</button>
+  </div>
+</section>
+
+<!-- ============ 2. MANIFESTO ============ -->
+<section class="manifesto" id="manifesto">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="man.eyebrow">Irreplaceable</p>
+    <h2 class="display xl reveal" data-i18n="man.title">There are places to visit.<br><em>And there is the last of its kind.</em></h2>
+    <div class="manifesto__cols">
+      <p class="lead reveal" data-i18n="man.p1">One hundred hectares of Atlantic Forest, river, waterfall and private beach — held as a single, fully-owned title and embraced on every side by Ilhabela State Park.</p>
+      <p class="reveal" data-i18n="man.p2">The park will never be developed. That means the land around Poço will look tomorrow exactly as it looks today. It also means a parcel like this one cannot be created again — not here, not anywhere on this coast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. FACTS ============ -->
+<section class="facts">
+  <div class="wrap facts__grid">
+    <div class="fact reveal"><span class="fact__n" data-count="100">100</span><span class="fact__u">ha</span><p data-i18n="fact.1">Private land, 100% owned, free and clear, clean title</p></div>
+    <div class="fact reveal"><span class="fact__n" data-count="100">100</span><span class="fact__u" data-i18n="fact.2u">homes</span><p data-i18n="fact.2">Development rights already granted</p></div>
+    <div class="fact reveal"><span class="fact__n">0</span><span class="fact__u" data-i18n="fact.3u">roads in</span><p data-i18n="fact.3">Access by sea only — and soon by air</p></div>
+    <div class="fact reveal"><span class="fact__n">100%</span><span class="fact__u"></span><p data-i18n="fact.4">Protected, private fresh-water source</p></div>
+    <div class="fact reveal"><span class="fact__n" data-count="2">2</span><span class="fact__u">km</span><p data-i18n="fact.5">Of trails already opened through the forest</p></div>
+    <div class="fact reveal"><span class="fact__n">360°</span><span class="fact__u"></span><p data-i18n="fact.6">Surrounded by Ilhabela State Park</p></div>
+  </div>
+</section>
+
+<!-- ============ 4. FILM ============ -->
+<section class="film">
+  <video class="film__video" src="assets/video/poco-film.mp4" poster="assets/img/v-costa.jpg" muted loop playsinline preload="metadata" data-autoplay></video>
+  <div class="film__overlay">
+    <p class="eyebrow" data-i18n="film.eyebrow">The arrival</p>
+    <h2 class="display" data-i18n="film.title">Arriving is already<br>part of the experience.</h2>
+    <button class="btn btn--ghost" id="playFilm" data-i18n="film.btn">Watch the film ▸</button>
+  </div>
+</section>
+
+<!-- ============ 5. THE LAND ============ -->
+<section class="land" id="land">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="land.eyebrow">The land</p>
+    <h2 class="display xl reveal" data-i18n="land.title">Sea, river, waterfall, forest.<br><em>All of it, inside one boundary.</em></h2>
+  </div>
+
+  <article class="chapter">
+    <figure class="chapter__img reveal"><img src="assets/img/praia-aerial.jpg" alt="Praia do Poço from the air" loading="lazy"></figure>
+    <div class="chapter__txt reveal">
+      <span class="chapter__no">01</span>
+      <h3 class="display" data-i18n="land.1.t">A private beach on the open Atlantic</h3>
+      <p data-i18n="land.1.p">Golden sand where the river meets the sea, granite boulders, clear water. Facing east toward the open ocean, with no neighbours on the horizon.</p>
+    </div>
+  </article>
+
+  <article class="chapter chapter--rev">
+    <figure class="chapter__img reveal"><img src="assets/img/rio.jpg" alt="The river inside the property" loading="lazy"></figure>
+    <div class="chapter__txt reveal">
+      <span class="chapter__no">02</span>
+      <h3 class="display" data-i18n="land.2.t">A river, a waterfall, and water you can drink</h3>
+      <p data-i18n="land.2.p">The property holds its own spring — 100% protected, rising inside forest that will never be cleared. Fresh water runs down through pools and cascades to the beach.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <figure class="chapter__img reveal"><img src="assets/img/v-rio-mata.jpg" alt="Atlantic Forest canopy" loading="lazy"></figure>
+    <div class="chapter__txt reveal">
+      <span class="chapter__no">03</span>
+      <h3 class="display" data-i18n="land.3.t">Mata Atlântica, on every side</h3>
+      <p data-i18n="land.3.p">One of the most biodiverse forests on Earth — and one of the most threatened. Here it runs unbroken from the ridgeline to the shore. About 2 km of trails already wind through it, with room for many more.</p>
+    </div>
+  </article>
+
+  <article class="chapter chapter--rev">
+    <figure class="chapter__img reveal"><img src="assets/img/jardim-trilha.jpg" alt="Garden paths" loading="lazy"><figcaption data-i18n="land.4.cap">Photo placeholder — coffee &amp; cacao plantation</figcaption></figure>
+    <div class="chapter__txt reveal">
+      <span class="chapter__no">04</span>
+      <h3 class="display" data-i18n="land.4.t">Coffee and cacao, grown in the shade</h3>
+      <p data-i18n="land.4.p">Plantations of coffee and cacao already grow under the forest canopy — the beginning of a working, regenerative estate with its own story to tell, from bean to cup.</p>
+    </div>
+  </article>
+</section>
+
+<!-- ============ 6. MAP STRIP ============ -->
+<section class="mosaic">
+  <img src="assets/img/v-pedras-rio.jpg" alt="" loading="lazy">
+  <img src="assets/img/chegada-aerial.jpg" alt="" loading="lazy">
+  <img src="assets/img/v-agua-pedras.jpg" alt="" loading="lazy">
+  <img src="assets/img/v-foz-topo.jpg" alt="" loading="lazy">
+</section>
+
+<!-- ============ 7. TODAY ============ -->
+<section class="today" id="today">
+  <div class="wrap today__head">
+    <div>
+      <p class="eyebrow reveal" data-i18n="today.eyebrow">Today</p>
+      <h2 class="display xl reveal" data-i18n="today.title">Already lived in.<br><em>Already off the grid.</em></h2>
+    </div>
+    <p class="lead reveal" data-i18n="today.p">Poço is not a plan on paper. Three houses, a generous common pavilion and a working infrastructure are already in place — quiet, simple and built around the landscape.</p>
+  </div>
+
+  <div class="wrap today__grid">
+    <div class="spec reveal"><b>3</b><span data-i18n="spec.1">houses</span></div>
+    <div class="spec reveal"><b>5</b><span data-i18n="spec.2">bedrooms</span></div>
+    <div class="spec reveal"><b>1</b><span data-i18n="spec.3">common pavilion — deck, kitchen, living &amp; dining</span></div>
+    <div class="spec reveal"><b>☀</b><span data-i18n="spec.4">Solar power</span></div>
+    <div class="spec reveal"><b>⌁</b><span data-i18n="spec.5">Starlink internet</span></div>
+    <div class="spec reveal"><b>≈</b><span data-i18n="spec.6">Own spring water</span></div>
+  </div>
+
+  <div class="gallery">
+    <figure class="g g--tall reveal"><img src="assets/img/deck.jpg" alt="The deck" loading="lazy"></figure>
+    <figure class="g reveal"><img src="assets/img/pavilhao.jpg" alt="Pavilion" loading="lazy"></figure>
+    <figure class="g reveal"><img src="assets/img/sala-jantar.jpg" alt="Dining room" loading="lazy"></figure>
+    <figure class="g g--wide reveal"><img src="assets/img/v-casa-aerial.jpg" alt="Houses from above" loading="lazy"></figure>
+    <figure class="g reveal"><img src="assets/img/casa-prancha.jpg" alt="House" loading="lazy"></figure>
+    <figure class="g reveal"><img src="assets/img/deck-mar.jpg" alt="Deck facing the sea" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ============ 8. FUTURE ============ -->
+<section class="future" id="future">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="future.eyebrow">Tomorrow</p>
+    <h2 class="display xl reveal" data-i18n="future.title">Room for a hundred homes.<br><em>Space for a thousand trees between them.</em></h2>
+    <p class="lead narrow reveal" data-i18n="future.p">Development rights for up to 100 homes are already in place — enough to create a low-density, nature-first community that keeps the forest whole. Two pieces of infrastructure will define the arrival.</p>
+  </div>
+
+  <div class="wrap concepts">
+    <figure class="concept reveal">
+      <div class="concept__frame">
+        <img src="assets/img/v-baia-barcos.jpg" alt="Location of the future dock" loading="lazy">
+        <svg viewBox="0 0 100 56.25" preserveAspectRatio="none" class="concept__svg">
+          <path d="M18 60 L30 38 L42 34" class="draw"/>
+          <rect x="40" y="31" width="9" height="5" rx=".6" class="draw"/>
+        </svg>
+        <span class="concept__tag" data-i18n="future.render">Render in progress</span>
+      </div>
+      <figcaption>
+        <h3 class="display" data-i18n="future.dock.t">The dock</h3>
+        <p data-i18n="future.dock.p">A timber pier reaching into the bay — the front door to Poço. Boats from Ilhabela and the mainland arrive directly at the beach, in any tide.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="concept reveal">
+      <div class="concept__frame">
+        <img src="assets/img/v-costa-mata.jpg" alt="Location of the future helipad" loading="lazy">
+        <svg viewBox="0 0 100 56.25" preserveAspectRatio="none" class="concept__svg">
+          <ellipse cx="36" cy="30" rx="8" ry="4.6" class="draw"/>
+          <text x="36" y="31.6" text-anchor="middle" class="concept__h">H</text>
+        </svg>
+        <span class="concept__tag" data-i18n="future.render">Render in progress</span>
+      </div>
+      <figcaption>
+        <h3 class="display" data-i18n="future.heli.t">The helipad</h3>
+        <p data-i18n="future.heli.p">A private helipad will put Poço roughly 45 minutes from São Paulo — remote by nature, close by design.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 9. EVENTS ============ -->
+<section class="events" id="events">
+  <div class="events__img"><img src="assets/img/v-telhado-mar.jpg" alt="" loading="lazy"></div>
+  <div class="events__txt">
+    <p class="eyebrow reveal" data-i18n="events.eyebrow">Experience it now</p>
+    <h2 class="display xl reveal" data-i18n="events.title">Celebrate here.</h2>
+    <p class="lead reveal" data-i18n="events.p">Poço is available for a small number of private occasions each year — never as a resort, never as a beach club. The whole territory is yours for the day or the weekend.</p>
+    <ul class="tags reveal">
+      <li data-i18n="events.t1">Weddings &amp; pre-weddings</li>
+      <li data-i18n="events.t2">Family gatherings</li>
+      <li data-i18n="events.t3">Leadership retreats</li>
+      <li data-i18n="events.t4">Birthdays</li>
+      <li data-i18n="events.t5">A weekend away</li>
+    </ul>
+    <a href="#contact" class="btn reveal" data-pick="events" data-i18n="events.btn">Check available dates</a>
+  </div>
+</section>
+
+<!-- ============ 10. INVITATION ============ -->
+<section class="invite">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="inv.eyebrow">An invitation, not a listing</p>
+    <h2 class="display xl reveal" data-i18n="inv.title">We are looking for the right people<br><em>to write the next chapter with us.</em></h2>
+    <div class="paths">
+      <div class="path reveal">
+        <span>I</span>
+        <h3 class="display" data-i18n="inv.1.t">Partnership</h3>
+        <p data-i18n="inv.1.p">For investors, hospitality operators and conservation-minded developers who want to shape a rare, low-density project alongside the founding family.</p>
+      </div>
+      <div class="path reveal">
+        <span>II</span>
+        <h3 class="display" data-i18n="inv.2.t">Acquisition</h3>
+        <p data-i18n="inv.2.p">For a single steward. Full ownership of 100 hectares, clean title and existing entitlements. Considered only in private conversation.</p>
+      </div>
+      <div class="path reveal">
+        <span>III</span>
+        <h3 class="display" data-i18n="inv.3.t">Experiences</h3>
+        <p data-i18n="inv.3.p">For those who simply want to spend time at Poço — a day, a weekend, a celebration.</p>
+      </div>
+    </div>
+    <p class="note reveal" data-i18n="inv.note">Title documents, environmental studies and the development framework are available to qualified parties under NDA.</p>
+  </div>
+</section>
+
+<!-- ============ 11. CONTACT ============ -->
+<section class="contact" id="contact">
+  <img class="contact__bg" src="assets/img/v-costa.jpg" alt="" loading="lazy">
+  <div class="wrap contact__inner">
+    <div>
+      <p class="eyebrow" data-i18n="contact.eyebrow">Private inquiry</p>
+      <h2 class="display xl" data-i18n="contact.title">When would you like<br>to see it for yourself?</h2>
+      <p data-i18n="contact.p">Every conversation is handled personally and in confidence.</p>
+    </div>
+    <form class="form" id="form">
+      <label><span data-i18n="form.name">Name</span><input name="name" required></label>
+      <label><span data-i18n="form.email">Email</span><input name="email" type="email" required></label>
+      <label><span data-i18n="form.interest">I'm interested in</span>
+        <select name="interest" id="interest">
+          <option value="events" data-i18n="form.o1">An event or stay</option>
+          <option value="partnership" data-i18n="form.o2">A partnership</option>
+          <option value="acquisition" data-i18n="form.o3">An acquisition</option>
+          <option value="other" data-i18n="form.o4">Something else</option>
+        </select>
+      </label>
+      <label><span data-i18n="form.msg">Message</span><textarea name="message" rows="4"></textarea></label>
+      <button class="btn" type="submit" data-i18n="form.send">Send</button>
+      <p class="form__ok" id="formOk" hidden data-i18n="form.ok">Thank you. We will be in touch personally.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>Fazenda Ambiental do Poço · Praia do Poço · Ilhabela · SP · Brasil</span>
+  <span>23°45′43″ S · 45°15′29″ W</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

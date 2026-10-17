@@ -1,0 +1,6 @@
+# Source footage exceeds GitHub's 100 MB file limit; web-encoded copies live in assets/video
+*.MOV
+*.mov
+
+.DS_Store
+Thumbs.db
