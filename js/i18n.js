@@ -8,7 +8,7 @@
     'fly.2.title': 'Uma ilha onde a maior parte da terra<br>é floresta protegida — para sempre.',
     'fly.3.title': 'Nenhuma estrada chega<br>a este lado da ilha.',
     'fly.4.eyebrow': '100 hectares · privado',
-    'fly.4.title': 'Este é o Poço.',
+    'fly.4.title': 'Esta é a Fazenda Ambiental Poço.',
     'fly.skip': 'Pular introdução ↓',
     'man.eyebrow': 'Insubstituível',
     'man.title': 'Existem lugares para visitar.<br><em>E existe o último do seu tipo.</em>',
